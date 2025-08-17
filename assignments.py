@@ -65,8 +65,33 @@ print(reverse_list(numbers)) # Should output: [3, 9, 1, 8, 2, 5]
         col1, col2 = st.columns([1, 1])
         with col1:
             st.metric("Your Grade", "70/100", "70%")
-        with col2:
-            st.metric("Class Average", "78/100", "78%")
+        
+        # Detailed feedback
+        st.write("**Instructor Feedback:**")
+        
+        feedback_data = [
+            ["Correctness (40 pts)", "35/40", "✅ All functions work correctly. -5 pts: No error handling for empty lists"],
+            ["Code Style (20 pts)", "15/20", "⚠️ Good variable names and structure. -5 pts: Some lines could be more concise"],
+            ["Comments (15 pts)", "12/15", "✅ Good function docstrings. -3 pts: Could use more inline comments"],
+            ["Testing (15 pts)", "8/15", "❌ Only tested with one list. Need at least 3 test cases. -7 pts"],
+            ["Error Handling (10 pts)", "0/10", "❌ No error handling for edge cases (empty lists, invalid input). -10 pts"]
+        ]
+        
+        df_feedback = pd.DataFrame(feedback_data, columns=["Category", "Score", "Comments"])
+        st.dataframe(df_feedback, use_container_width=True)
+        
+        st.write("**Overall Comments:**")
+        st.info("""
+        **Strengths:** Your logic is correct and the code works well for the basic case. Good use of descriptive function names and clear structure.
+        
+        **Areas for Improvement:** 
+        1. Add error handling for edge cases (what happens with empty lists?)
+        2. Include more comprehensive testing with different types of input
+        3. Consider using built-in functions like `max()` for efficiency
+        4. Add more inline comments to explain complex logic
+        
+        **Next Steps:** Review the error handling techniques from Week 8 lectures and practice writing more comprehensive test cases.
+        """)
             
         # Student's submission
         st.write("**Your Submission:**")
@@ -103,34 +128,3 @@ print("Evens:", count_evens(test_list))
 print("Reversed:", reverse_list(test_list))'''
 
         st.code(student_code, language='python')
-        
-        # Detailed feedback
-        st.write("**Instructor Feedback:**")
-        
-        feedback_data = [
-            ["Correctness (40 pts)", "35/40", "✅ All functions work correctly. -5 pts: No error handling for empty lists"],
-            ["Code Style (20 pts)", "15/20", "⚠️ Good variable names and structure. -5 pts: Some lines could be more concise"],
-            ["Comments (15 pts)", "12/15", "✅ Good function docstrings. -3 pts: Could use more inline comments"],
-            ["Testing (15 pts)", "8/15", "❌ Only tested with one list. Need at least 3 test cases. -7 pts"],
-            ["Error Handling (10 pts)", "0/10", "❌ No error handling for edge cases (empty lists, invalid input). -10 pts"]
-        ]
-        
-        df_feedback = pd.DataFrame(feedback_data, columns=["Category", "Score", "Comments"])
-        st.dataframe(df_feedback, use_container_width=True)
-        
-        st.write("**Overall Comments:**")
-        st.info("""
-        **Strengths:** Your logic is correct and the code works well for the basic case. Good use of descriptive function names and clear structure.
-        
-        **Areas for Improvement:** 
-        1. Add error handling for edge cases (what happens with empty lists?)
-        2. Include more comprehensive testing with different types of input
-        3. Consider using built-in functions like `max()` for efficiency
-        4. Add more inline comments to explain complex logic
-        
-        **Next Steps:** Review the error handling techniques from Week 8 lectures and practice writing more comprehensive test cases.
-        """)
-        
-        st.write("**Resubmission Opportunity:**")
-        st.write("You can resubmit this assignment for up to 85% credit by addressing the feedback above.")
-        st.write("**Resubmission Deadline:** March 10, 2024")

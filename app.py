@@ -18,19 +18,17 @@ load_css()
 
 # Initialize session state for navigation
 if 'current_page' not in st.session_state:
-    st.session_state.current_page = 'Claude'
+    st.session_state.current_page = 'Syllabus'
 
 # Sidebar Navigation
 with st.sidebar:
-    st.markdown("### CS101")
+    if st.button("CS101", use_container_width=True, type="primary"):
+        st.session_state.current_page = 'Syllabus'
     st.markdown("---")
     
     # Navigation buttons
     if st.button("Assignments", use_container_width=True):
         st.session_state.current_page = 'Assignments'
-    
-    if st.button("Syllabus", use_container_width=True):
-        st.session_state.current_page = 'Syllabus'
     
     if st.button("Lectures", use_container_width=True):
         st.session_state.current_page = 'Lectures'

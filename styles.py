@@ -186,37 +186,6 @@ def load_css():
         color: #2D3748 !important;
     }
 
-    /* Fix code block visibility */
-    .stCodeBlock,
-    .stCodeBlock *,
-    [data-testid="stCode"],
-    [data-testid="stCode"] *,
-    pre,
-    code {
-        color: #2D3748 !important;
-        background-color: #F7FAFC !important;
-        border: 1px solid #E2E8F0 !important;
-        border-radius: 6px !important;
-    }
-
-    /* Ensure code syntax highlighting works */
-    .stCodeBlock code,
-    [data-testid="stCode"] code,
-    pre code {
-        color: #2D3748 !important;
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
-        font-size: 14px !important;
-        line-height: 1.5 !important;
-    }
-
-    /* Fix code block container */
-    .stCodeBlock > div,
-    [data-testid="stCode"] > div {
-        background-color: #F7FAFC !important;
-        border-radius: 6px !important;
-        padding: 1rem !important;
-    }
-
     /* Improve warning box readability */
     .stAlert {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
@@ -346,6 +315,26 @@ def load_css():
         color: white !important;
         transform: translateY(-2px) !important;
         box-shadow: 0 4px 8px rgba(43, 87, 151, 0.2) !important;
+    }
+                
+    /* Restore Streamlit default code block styles */
+    code, pre, pre code {
+        all: revert !important;  /* resets to Streamlit's defaults */
+    }
+
+    /* Optional: only reset colors while keeping your font stack */
+    code, pre, pre code {
+        color: unset !important;
+        background: unset !important;
+        font-family: monospace !important;
+    }
+        /* Don't override code blocks */
+    .stMarkdown, .stText {
+        color: #2D3748 !important;
+    }
+
+    .stMarkdown code, .stMarkdown pre {
+        color: inherit !important;   /* let Streamlit handle it */
     }
     </style>
     """, unsafe_allow_html=True)
